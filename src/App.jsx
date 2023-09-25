@@ -5,10 +5,11 @@ import './style.scss';
 
 function App() {
 	let isPop = true;
+	let isFooter = false;
 	return (
 		<>
 			<Header />
-			<Footer />
+			{isFooter && <Footer />}
 			{isPop ? <Popup /> : null}
 		</>
 	);
