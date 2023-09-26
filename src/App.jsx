@@ -1,23 +1,18 @@
 import { useState } from 'react';
 import './style.scss';
+import Popup from './components/Popup';
 
-// 리액트 개발 시 불변성이 중요한 이유
-// 리액트는 원본이 있어야 복사본을 통해서 차이점을 비교분석
-// 리액트 안에서 배열이나, 객체 같은 참조형 자료는 무조건 depp copy 를 해서 데이터를 변경해야됨
+// state 생성 true, false
+// jsx 에서 state 값이 true 일때에만 Popup 이 보이도록 처리
+// 버튼 클릭할 때마다 state 의 true, false 변경
 
 function App() {
-	const [Colors, setColors] = useState(['red', 'green', 'blue']);
-	const newColors = [...Colors];
-	newColors[0] = 'hotpink';
-
+	const [Open, setOpen] = useState(false);
 	return (
 		<>
-			{Colors.map((color, idx) => (
-				<button style={{ backgroundColor: color }} key={idx}>
-					{color}
-				</button>
-			))}
-			<button onClick={() => setColors(newColors)}>색상변경</button>
+			<button onClick={() => setOpen(true)}>팝업 열기</button>
+			<button onClick={() => setOpen(false)}>팝업 닫기</button>
+			{Open && <Popup />}
 		</>
 	);
 }
